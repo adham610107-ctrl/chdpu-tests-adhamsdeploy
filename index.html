@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChDPU - Yakuniy Imtihon Testlari</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="welcome-screen" class="active">
+        <div class="bg-image"></div>
+        <div class="overlay">
+            <img src="logo.png" alt="ChDPU Logo" class="top-left-logo">
+            
+            <div class="hero-content">
+                <h1>Assalomu Alaykum!</h1>
+                <p class="subtitle">Chirchiq Davlat Pedagogika Universiteti 2025-2026 <br> Yakuniy imtihon testlari to’plami bilan mashq qilish uchun websayt.</p>
+                <p class="author">Sayt avtori: Adhamjon Atamuratov</p>
+                
+                <div class="social-links">
+                    <a href="https://t.me/atamuratovs" target="_blank"><img src="tg.png" alt="Telegram"></a>
+                    <a href="https://www.instagram.com/strovln" target="_blank"><img src="insta.png" alt="Instagram"></a>
+                </div>
+                
+                <button class="btn-premium" onclick="enterDashboard()">Mashqlarni boshlash</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="dashboard-screen" class="hidden">
+        <div class="container">
+            <h2>Yo'nalishni tanlang</h2>
+            <div class="grid-buttons">
+                <button class="btn-subject" onclick="startSubjectTest('musiqa_nazariyasi')">Musiqa nazariyasi</button>
+                <button class="btn-subject" onclick="startSubjectTest('cholgu_ijrochiligi')">Cholg'u ijrochiligi</button>
+                <button class="btn-subject" onclick="startSubjectTest('vokal_ijrochiligi')">Vokal ijrochiligi</button>
+                <button class="btn-subject" onclick="startSubjectTest('metodika_repertuar')">Metodika va repertuar</button>
+                <button class="btn-special" onclick="startRandomAllTest()">786...800 Aralash (20 ta)</button>
+                <button class="btn-dark" onclick="toggleChapters()">Barcha testlar (1-800)</button>
+            </div>
+
+            <div id="chapters-grid" class="hidden chapters-container">
+                </div>
+        </div>
+    </div>
+
+    <div id="test-screen" class="hidden">
+        <div class="test-header">
+            <div class="progress-bar-bg"><div id="progress-fill"></div></div>
+            <div class="stats-board">
+                <span class="stat">To'g'ri: <b id="correct-count" style="color: #2E8B57;">0</b></span>
+                <span class="stat">Xato: <b id="wrong-count" style="color: #CD5C5C;">0</b></span>
+                <span class="stat">Natija: <b id="percent-count">0%</b></span>
+            </div>
+            <button class="btn-back" onclick="backToDashboard()">Ortga qaytish</button>
+        </div>
+
+        <div class="container" id="questions-container">
+            </div>
+    </div>
+
+    <footer>
+        <p>&#169; 2025-2026 Adham’s development</p>
+        <div class="footer-socials">
+            <a href="https://t.me/atamuratovs" target="_blank"><img src="tg.png" alt="TG"></a>
+            <a href="https://www.instagram.com/strovln" target="_blank"><img src="insta.png" alt="IN"></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
