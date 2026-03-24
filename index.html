@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adham Quiz Pro - Training Mode</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div id="bg-overlay" class="background-overlay"></div>
+
+    <div id="welcome-screen" class="glass-container active-screen">
+        <div class="welcome-header">
+            <h1>Assalomu Aleykum!</h1>
+            <p>Adham's Development platformasiga xush kelibsiz. Bu yerda siz Chirchiq davlat pedagogika universiteti San'atshunoslik fakulteti Musiqiy ta'lim yo'nalishi uchun DAK testlariga tayyorgarlik ko'rishingiz mumkin.</p>
+            <div class="social-links">
+                <a href="https://t.me/atamuratovs" target="_blank"><img src="tg.png" alt="Telegram"></a>
+                <a href="https://www.instagram.com/strovln" target="_blank"><img src="inst.png" alt="Instagram"></a>
+            </div>
+            <p class="warning-text">⚠️ <b>Ogohlantirish:</b> Test materiallarini tarqatish Universitet mualliflik huquqiga zid. Bunday holatlar aniqlansa, javobgarlikka tortilishga olib keladi!</p>
+        </div>
+        <button class="primary-btn" onclick="showDashboard()">Tizimni Boshlash</button>
+    </div>
+
+    <div id="dashboard" class="glass-container hidden">
+        <h2>Fanni tanlang</h2>
+        <p class="subtitle">Test yechish rejimi: 20 talik qat'iy tizim</p>
+        <div class="subject-grid">
+            <button class="sub-btn" onclick="loadSubject('musiqa_nazariyasi.json')">Musiqa nazariyasi</button>
+            <button class="sub-btn" onclick="loadSubject('cholgu_ijrochiligi.json')">Cholg'u ijrochiligi</button>
+            <button class="sub-btn" onclick="loadSubject('vokal_ijrochiligi.json')">Vokal ijrochiligi</button>
+            <button class="sub-btn" onclick="loadSubject('metodika_repertuar.json')">Metodika va repertuar</button>
+        </div>
+        <button class="back-btn" onclick="showWelcome()">Ortga qaytish</button>
+    </div>
+
+    <div id="quiz-area" class="quiz-container hidden">
+        <div class="quiz-header-fixed">
+            <div class="stats-row">
+                <span class="stat-badge">Savol: <b id="current-q-num">1/20</b></span>
+                <span class="stat-badge text-green">To'g'ri: <b id="correct-count">0</b></span>
+                <span class="stat-badge text-red">Xato: <b id="wrong-count">0</b></span>
+                <span class="stat-badge text-purple">Natija: <b id="percent-count">0%</b></span>
+            </div>
+            <div class="progress-bar-bg"><div id="progress-fill"></div></div>
+        </div>
+        
+        <div id="questions-list">
+            </div>
+    </div>
+
+    <div id="custom-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2 id="modal-title">Xabar</h2>
+            <p id="modal-text">Matn...</p>
+            <button class="primary-btn" id="modal-btn" onclick="closeModal()">Davom etish</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© Adham's copyright 👨‍💻 2025-2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

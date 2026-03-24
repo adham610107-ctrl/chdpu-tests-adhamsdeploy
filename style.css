@@ -1,0 +1,82 @@
+:root {
+    --bg-comfort: #F7F6F0; /* Ko'zga qulay engil krem fon */
+    --text-main: #2C3E50; /* Qora o'rniga yumshoq to'q ko'k/kulrang */
+    --glass-bg: rgba(255, 255, 255, 0.9);
+    --primary-color: #4A7C59; /* Sokin yashil/ko'k aralashmasi */
+    --wrong-bg: #FDE8E8;
+    --wrong-text: #C53030;
+    --correct-bg: #E3FCEF;
+    --correct-text: #22543D;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+body { background: var(--bg-comfort); color: var(--text-main); overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+
+/* Background and Blur Transition */
+.background-overlay {
+    position: fixed; inset: 0; 
+    background: url('bino.png') no-repeat center center fixed; 
+    background-size: cover; z-index: -2; 
+    transition: filter 0.8s ease, transform 0.8s ease;
+}
+.quiz-active .background-overlay { filter: blur(12px) brightness(0.9); transform: scale(1.05); }
+
+/* Containers */
+.glass-container {
+    background: var(--glass-bg); backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.6); border-radius: 24px;
+    padding: 40px; width: 92%; max-width: 650px; margin: auto; text-align: center;
+    box-shadow: var(--shadow); transition: 0.5s;
+}
+.quiz-container { width: 95%; max-width: 800px; margin: 20px auto 80px; transition: 0.5s; }
+
+.hidden { display: none !important; }
+
+/* Typography & Links */
+h1, h2 { color: var(--text-main); margin-bottom: 15px; }
+p { line-height: 1.6; margin-bottom: 20px; font-size: 16px; color: #4A5568; }
+.warning-text { font-size: 13px; color: #C53030; background: #FDE8E8; padding: 10px; border-radius: 8px; }
+
+.social-links { margin: 20px 0; }
+.social-links img { width: 45px; margin: 0 15px; transition: transform 0.3s; cursor: pointer; }
+.social-links img:hover { transform: translateY(-5px) scale(1.1); }
+
+/* Buttons */
+button { border: none; outline: none; cursor: pointer; border-radius: 12px; font-weight: 600; transition: all 0.3s ease; }
+.primary-btn { background: var(--primary-color); color: white; padding: 16px 32px; font-size: 18px; width: 100%; box-shadow: 0 4px 15px rgba(74, 124, 89, 0.3); }
+.primary-btn:hover { background: #3c6649; transform: translateY(-2px); }
+.back-btn { background: transparent; color: #718096; padding: 12px; margin-top: 15px; border: 1px solid #CBD5E0; width: 100%; }
+.back-btn:hover { background: #EDF2F7; }
+.subject-grid { display: flex; flex-direction: column; gap: 12px; }
+.sub-btn { background: white; color: var(--text-main); padding: 16px; font-size: 16px; border: 1px solid #E2E8F0; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+.sub-btn:hover { border-color: var(--primary-color); transform: translateY(-2px); }
+
+/* Test Header & Progress */
+.quiz-header-fixed { position: sticky; top: 10px; background: var(--glass-bg); padding: 15px 20px; border-radius: 16px; box-shadow: var(--shadow); z-index: 100; backdrop-filter: blur(15px); margin-bottom: 30px; }
+.stats-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: bold; margin-bottom: 10px; }
+.text-green { color: #2F855A; } .text-red { color: #C53030; } .text-purple { color: #6B46C1; }
+.progress-bar-bg { height: 10px; background: #E2E8F0; border-radius: 5px; overflow: hidden; }
+#progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #4A7C59, #68D391); transition: width 0.4s ease; }
+
+/* Questions */
+.question-card { background: white; padding: 25px; border-radius: 16px; margin-bottom: 25px; box-shadow: var(--shadow); transition: all 0.5s ease; border: 1px solid #EDF2F7; }
+.question-card h3 { font-size: 18px; margin-bottom: 20px; color: var(--text-main); }
+.opt-btn { display: block; width: 100%; text-align: left; padding: 15px 20px; margin: 10px 0; background: #F7FAFC; border: 2px solid transparent; color: var(--text-main); border-radius: 12px; cursor: pointer; transition: 0.3s; font-size: 16px; }
+.opt-btn:hover:not(:disabled) { background: #EDF2F7; }
+
+/* Logic States */
+.blurred-q { filter: blur(8px); opacity: 0.4; pointer-events: none; user-select: none; }
+.opt-btn.wrong-choice { background-color: var(--wrong-bg); color: var(--wrong-text); border-color: var(--wrong-text); text-decoration: line-through; pointer-events: none; }
+.opt-btn.correct-choice { background-color: var(--correct-bg); color: var(--correct-text); border-color: var(--correct-text); pointer-events: none; }
+
+/* Animations */
+.gravity-fall { animation: fallDown 1.5s forwards cubic-bezier(0.55, 0.085, 0.68, 0.53); }
+@keyframes fallDown { to { transform: translateY(150vh) rotate(15deg); opacity: 0; } }
+
+/* Custom Modal */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.modal-content { background: white; padding: 40px; border-radius: 24px; text-align: center; max-width: 400px; width: 90%; box-shadow: 0 20px 50px rgba(0,0,0,0.2); animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+@keyframes popUp { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+footer { margin-top: auto; padding: 20px; text-align: center; color: #718096; font-size: 14px; background: rgba(255,255,255,0.5); }
